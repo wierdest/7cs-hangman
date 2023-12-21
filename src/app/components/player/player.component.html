@@ -1,0 +1,43 @@
+
+<mat-card style="margin: 5%; border-top-left-radius: 50px; border-top-right-radius: 50px;">
+    <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-subtitle class="subtitle">
+            {{playerData?.name}}
+          </mat-card-subtitle>
+          <mat-card-title class="title">{{playerData?.points | noIfZero}} points  &  {{playerData?.guesses?.length | noIfZero}} tries{{playerData?.guesses?.length === 0 ? '.' : playerData?.guesses}} </mat-card-title>
+        </mat-card-title-group>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <div style="display: flex; justify-content: center;">
+
+      @if(isGameOn) {
+        <div style="display: flex; flex-direction: column;">
+          <mat-label style="font-family: Pacifico;">Enter a letter or a word</mat-label>
+          <input matInput type="text" [(ngModel)]="value">
+        </div>
+        @if(value) {
+          <button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        }
+      }
+    
+      @if(!isGameOn) {
+        <div style="display: flex; flex-direction: column; width: 100%; align-items: stretch; justify-content: center; padding: 2px;">
+          <app-hidden-text-input ></app-hidden-text-input>
+        </div>
+      }
+    
+    </div>
+   
+    <mat-card-actions>
+      <div style="display: flex; width: 100%; justify-content: center; align-items: center;">
+        <button mat-icon-button (click)="clickFlip()">
+          <mat-icon>flip</mat-icon>
+        </button>
+      </div>
+     
+  </mat-card-actions>
+
+</mat-card>

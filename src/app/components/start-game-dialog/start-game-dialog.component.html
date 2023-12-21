@@ -1,0 +1,60 @@
+<h2 mat-dialog-title class="large-title">Start a new game!</h2>
+<mat-dialog-content>
+  <section>
+    <h4>Game mode</h4>
+    <mat-button-toggle-group [formControl]="gameModeControl" aria-label="Game Mode">
+      <mat-button-toggle value="single">Single</mat-button-toggle>
+      <mat-button-toggle value="multi">Multiplayer</mat-button-toggle>
+    </mat-button-toggle-group>
+
+  </section>
+
+  @if(gameModeControl.value === 'single') {
+
+    <section>
+      <mat-form-field style="width: 100%;">
+        <input matInput [formControl]="singlePlayerNameControl" placeholder="Enter player name">
+      </mat-form-field>
+      
+    </section>
+
+    <section>
+    <h4 >Single mode</h4>
+    <mat-button-toggle-group [formControl]="singleModeControl" aria-label="Single Mode">
+      <mat-button-toggle value="ask">Ask</mat-button-toggle>
+      <mat-button-toggle value="both">Both</mat-button-toggle>
+      <mat-button-toggle value="answer">Answer</mat-button-toggle>
+    </mat-button-toggle-group>
+    </section>
+  }
+ 
+  @if(gameModeControl.value === 'multi') {
+    <h4>Number of players: {{numberOfPlayersControl.value}}</h4>
+   
+    <mat-slider  min="2" max="4" step="1" showTickMarks discrete >
+      <input [formControl]="numberOfPlayersControl"  matSliderThumb>
+    </mat-slider>
+
+    <mat-tab-group style="width: 100%;">
+      @for(i of setArrayFromNumber(numberOfPlayersControl!.value); track $index) {
+        <mat-tab label="Player {{$index + 1}}">
+          <mat-form-field style="width: 100%;">
+            <input matInput [formControl]="playerNameControls[$index]" placeholder="Enter player name">
+          </mat-form-field>
+        
+        </mat-tab>
+      }
+
+    </mat-tab-group>
+
+   
+
+   
+  }
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="clickStart()">Start</button>
+</mat-dialog-actions>

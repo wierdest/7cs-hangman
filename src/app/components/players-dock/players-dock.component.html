@@ -1,0 +1,31 @@
+<div class="grid-container">
+
+    @if(!tilesData) {
+        <div style="display: flex; flex-direction: column; justify-content: start; align-items: center; width: auto; height: 100%; padding-top: 5%;">
+          <button  class="title" mat-fab extended color="warn" (click)="openStartDialog()">
+            <mat-icon  color="primary" >explore</mat-icon>
+           {{ currentScreenSize !== 'XSmall' ? 'Start a brand new game' : 'Start'}}
+          </button>
+  
+        </div>
+    }
+    @if(tilesData) {
+        @if(currentScreenSize === 'XSmall' || currentScreenSize === 'Small') {
+            <h1>THIS WILL BE LIST (VERTICAL) </h1>
+        }
+        @if(currentScreenSize !== 'XSmall' && currentScreenSize !== 'Small') {
+           <mat-grid-list class="drag-list" cols="{{tilesData.length}}" rowHeight="100px">
+            @for(tile of tiles; track $index) {
+                <mat-grid-tile [colspan]="tile.cols" [rowspan]="tile.rows">
+                    <div class="flip-container" [ngClass]="{'flipped': tile.flipped, 'flipped-backward': tile.flipDirection === 'backward'}">
+                        <app-player [playerData]="tile.data" (flipCard)="flipCard($index)"></app-player>
+                    </div>
+                </mat-grid-tile>
+            }
+        </mat-grid-list>
+        }
+
+    }
+
+</div>
+

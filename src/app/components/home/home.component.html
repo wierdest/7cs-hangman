@@ -1,0 +1,17 @@
+<mat-drawer-container  class="home-background diagonal-stripes">
+    <app-toolbar (drawerToggle)="drawer.toggle()"></app-toolbar>
+
+      <div style="display: flex; flex-direction: column; height: 82%;">
+        
+        <app-hangman style="width: 98%; height: 70%; align-self: center; opacity: 0.2; background-color: white; border-radius: 30px;"></app-hangman>
+        <div style="width: 100% ;" class="diagonal-stripes-reversed-small">
+          <app-players-dock></app-players-dock>
+          
+        </div>
+      </div>
+
+    
+    <mat-drawer #drawer mode="over" class="sidenav">
+    </mat-drawer>
+  </mat-drawer-container>
+  

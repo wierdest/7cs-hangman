@@ -1,0 +1,22 @@
+.title {
+    color: rgba(0, 0, 0, 0.70);
+    font-family: Pacifico;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    text-align: justify;
+   
+}
+
+.subtitle {
+
+    font-family: Pacifico;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    text-align: justify;
+}
+
+
